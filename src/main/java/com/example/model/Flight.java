@@ -20,7 +20,7 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-//@DynamicUpdate
+@DynamicUpdate
 public class Flight extends BaseEntity {
 
 	//@Enumerated(EnumType.STRING)
@@ -45,7 +45,7 @@ public class Flight extends BaseEntity {
 	int distance = 0;
 
 	@Column(nullable = false)
-	LocalTime estimatedFlightTime = LocalTime.of(4, 0);
+	LocalTime estimatedFlightTime = LocalTime.of(5, 0);
 
 	@Column(columnDefinition="DATETIME(0)")
 	OffsetDateTime startedDateTime;

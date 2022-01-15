@@ -22,7 +22,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-//@DynamicUpdate
+@DynamicUpdate
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
@@ -34,17 +34,17 @@ public class BaseEntity {
     String name;
 
     @Column(columnDefinition="TIMESTAMP(0)")
-//	//@CreatedDate
+	@CreatedDate
 //	@Column(columnDefinition = "TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP",
 //			updatable = false, insertable = false)
 //	@Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp // hibernate
-//	@UpdateTimestamp
-    OffsetDateTime created;
+    //@CreationTimestamp // hibernate
+    Instant created;
 
     @LastModifiedDate
     //@UpdateTimestamp
     //@Column(name = "updated")
+    @Column(columnDefinition="TIMESTAMP(0)")
     Instant updated;
 
     @Column(columnDefinition = "integer default 0")
