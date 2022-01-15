@@ -1,6 +1,7 @@
 package com.example.model;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -14,26 +15,21 @@ import java.time.LocalDate;
 @AllArgsConstructor
 //@EqualsAndHashCode(of = "id")
 //@ToString(of = "name")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Airplane extends BaseEntity {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-//	private Long id;
-//
-//	private String name;
-
-	private int serial;
+	int serial;
 
 	//@OneToMany(mappedBy = "beach", fetch = FetchType.EAGER)
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Company company;
+	Company company;
 
-	private int numberOfFlights;
+	int numberOfFlights;
 
-	private int flightDistance;
+	int flightDistance;
 
-	private int fuelCapacity;
+	int fuelCapacity;
 
-	private int type;
+	int type;
 
-	private LocalDate planeCreated;
+	LocalDate planeCreated;
 }

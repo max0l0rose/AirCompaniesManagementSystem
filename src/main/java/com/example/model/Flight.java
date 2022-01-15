@@ -1,9 +1,14 @@
 package com.example.model;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -14,43 +19,43 @@ import java.time.OffsetDateTime;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+//@DynamicUpdate
 public class Flight extends BaseEntity {
 
 	//@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	FlightStatus status;
+	FlightStatus status = FlightStatus.PENDING;
 
 	@ManyToOne
 	// I think a flight may be not assigned to a company - nullable
-	private Company company;
+	Company company;
 
 	// I think a flight may be not assigned to a plane
 	// nullable
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Airplane airplane;
+	Airplane airplane;
 
 	@Column(nullable = false)
-	private String departCountry;
+	String departCountry = "UA";
 
 	@Column(nullable = false)
-	private String destCountry;
+	String destCountry = "FRA";
 
-	private int distance;
+	int distance = 0;
 
 	@Column(nullable = false)
-	private LocalTime estimatedFlightTime;
+	LocalTime estimatedFlightTime = LocalTime.of(4, 0);
 
 	@Column(columnDefinition="DATETIME(0)")
-	private OffsetDateTime startedDateTime;
+	OffsetDateTime startedDateTime;
 
 	@Column(columnDefinition="DATETIME(0)")
-	private OffsetDateTime endedDateTime;
+	OffsetDateTime endedDateTime;
 
 	@Column(columnDefinition="DATETIME(0)")
-	private OffsetDateTime delayStartedDateTime;
+	OffsetDateTime delayStartedDateTime;
 
-	@Column(columnDefinition="DATETIME(0)")
-	private OffsetDateTime createdDateTime;
 }
 
 
