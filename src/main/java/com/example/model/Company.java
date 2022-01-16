@@ -21,4 +21,11 @@ public class Company extends BaseEntity {
 
 	// the founded date doesn't belong to some timezone ) I think
 	LocalDate founded;
+
+	@Override
+	public String toString() {
+		return "Company{" +
+				       "name=" + getName()
+				        + '}';
+	}
 }
