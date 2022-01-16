@@ -19,5 +19,6 @@ import java.time.LocalDate;
 public class Company extends BaseEntity {
 	int type;
 
+	// the founded date doesn't belong to some timezone ) I think
 	LocalDate founded;
 }

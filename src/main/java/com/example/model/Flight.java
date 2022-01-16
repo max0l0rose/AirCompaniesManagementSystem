@@ -9,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -47,6 +48,7 @@ public class Flight extends BaseEntity {
 	@Column(nullable = false)
 	LocalTime estimatedFlightTime = LocalTime.of(5, 0);
 
+	@DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
 	@Column(columnDefinition="DATETIME(0)")
 	OffsetDateTime startedDateTime;
 
@@ -55,11 +57,6 @@ public class Flight extends BaseEntity {
 
 	@Column(columnDefinition="DATETIME(0)")
 	OffsetDateTime delayStartedDateTime;
-
 }
 
-
-enum FlightStatus {
-	ACTIVE, COMPLETED, DELAYED, PENDING
-}
 

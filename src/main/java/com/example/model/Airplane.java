@@ -3,6 +3,7 @@ package com.example.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -31,5 +32,6 @@ public class Airplane extends BaseEntity {
 
 	int type;
 
+	//@DateTimeFormat(pattern = "yyyy-MM-dd")
 	LocalDate planeCreated;
 }

@@ -1,28 +1,26 @@
 package com.example;
 
-import com.example.model.Airplane;
-import com.example.model.Company;
-import com.example.model.Flight;
-import com.example.repository.AirplaneRepository;
-import com.example.repository.CompanyRepository;
-import com.example.repository.FlightRepository;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootApplication
 @EnableJpaAuditing
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 public class AirCompaniesManagementSystemApp {
 
-//	Flight flight = new Flight();
+//	final AirplaneRepository airplaneRepository;
+//	final CompanyRepository companyRepository;
+//	final FlightRepository flightRepository;
+
+	//	Flight flight = new Flight();
 //
 //	@Bean
-//	synchronized boolean init(AirplaneRepository airplaneRepository,
-//	             CompanyRepository companyRepository,
-//				FlightRepository flightRepository)
+//	synchronized boolean init()
 //	{
 ////		Company company1 = Company.builder().name("Company1").build();
 ////		airplaneRepository.save(Airplane.builder().name("Plane1").company(company1).build());
@@ -37,31 +35,43 @@ public class AirCompaniesManagementSystemApp {
 //
 //		return true;
 //	}
-//
-//
+
+
 //	@Bean
-//	boolean init2(AirplaneRepository airplaneRepository,
-//	             CompanyRepository companyRepository,
-//	             FlightRepository flightRepository)
-//	{
-//		flight.setName("aaaa");
-//		flightRepository.save(flight);
-//		return true;
-//	}
-//
-//
-//	@Bean
-//	boolean init3(AirplaneRepository airplaneRepository,
-//	              CompanyRepository companyRepository,
-//	              FlightRepository flightRepository)
-//	{
-//		//flight.setVersion(1);
-//		Flight flight = flightRepository.findById(1L).get();
-//		flight.setName("bbbb");
-//		flightRepository.save(flight);
+//	boolean init2() {
+////		flight.setName("aaaa");
+////		flightRepository.save(flight);
 //		return true;
 //	}
 
+
+
+//	//@Bean
+//	// DB NOT ready
+//	@PostConstruct
+//	boolean init3()
+//	{
+//		//flight.setVersion(1);
+//		//Flight flight = flightRepository.findById(4L).get();
+////		flight.setName("bbbb");
+////		flightRepository.save(flight);
+//		return true;
+//	}
+
+
+//	// DB ready!
+//	@EventListener
+//	public void onApplicationEvent(ContextRefreshedEvent event) {
+//		Flight flight = flightRepository.findById(4L).get();
+//		int a = 1;
+//	}
+
+
+//	// Works
+//	@EventListener(ApplicationReadyEvent.class)
+//	public void doSomethingAfterStartup() {
+//		System.out.println("hello world, I have just started up");
+//	}
 
 
 	public static void main(String[] args) {
@@ -69,3 +79,14 @@ public class AirCompaniesManagementSystemApp {
 	}
 
 }
+
+
+//// DB ready!
+//@Component
+//class AppStartupRunner implements ApplicationRunner {
+//
+//	@Override
+//	public void run(ApplicationArguments args)
+//	{
+//	}
+//}

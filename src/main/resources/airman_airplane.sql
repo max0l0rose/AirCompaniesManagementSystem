@@ -1,3 +1,3 @@
-INSERT INTO airman.airplane (id, name, flight_distance, fuel_capacity, number_of_flights, plane_created, serial, type, company_id) VALUES (2, 'Plane1', 5000, 2000, 100, '2000-01-01', 9999, 1, 3);
-INSERT INTO airman.airplane (id, name, flight_distance, fuel_capacity, number_of_flights, plane_created, serial, type, company_id) VALUES (3, 'Plane2', 6000, 2500, 200, '2006-01-01', 101010, 2, null);
-INSERT INTO airman.airplane (id, name, flight_distance, fuel_capacity, number_of_flights, plane_created, serial, type, company_id) VALUES (4, 'Plane3', 7000, 3000, 300, '2007-01-01', 111111, 3, null);
+INSERT INTO airman.airplane (id, created, name, updated, version, flight_distance, fuel_capacity, number_of_flights, plane_created, serial, type, company_id) VALUES (2, null, 'Plane1', null, 0, 5000, 2000, 100, '2000-01-01', 9999, 1, 1);
+INSERT INTO airman.airplane (id, created, name, updated, version, flight_distance, fuel_capacity, number_of_flights, plane_created, serial, type, company_id) VALUES (3, null, 'Plane2', null, 0, 6000, 2500, 200, '2006-01-01', 101010, 2, null);
+INSERT INTO airman.airplane (id, created, name, updated, version, flight_distance, fuel_capacity, number_of_flights, plane_created, serial, type, company_id) VALUES (4, null, 'Plane3', null, 0, 7000, 3000, 300, '2007-01-01', 111111, 3, null);
