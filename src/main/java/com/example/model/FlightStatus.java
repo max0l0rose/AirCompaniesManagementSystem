@@ -1,5 +1,5 @@
 package com.example.model;
 
 public enum FlightStatus {
-	DELAYED, ACTIVE, PENDING, COMPLETED
+	DELAYED, ACTIVE, PENDING, COMPLETED;
 }

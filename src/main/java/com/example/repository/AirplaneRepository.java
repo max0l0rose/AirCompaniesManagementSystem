@@ -17,4 +17,7 @@ public interface AirplaneRepository extends JpaRepository<Airplane, Long> {
 	@Modifying
 	@Query("update Airplane a set a.company.id = ?2 where a.id=?1")
 	int setCompany(long airplaneId, long companyId);
+
+//	@Query("insert Airplane a set a.company.id = ?2 where a.id=?1")
+//	void createAirplane(Airplane airplane);
 }

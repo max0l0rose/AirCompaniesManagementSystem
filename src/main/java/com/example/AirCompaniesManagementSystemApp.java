@@ -1,7 +1,6 @@
 package com.example;
 
-import com.example.model.Company;
-import com.example.model.Flight;
+import com.example.model.*;
 import com.example.repository.AirplaneRepository;
 import com.example.repository.CompanyRepository;
 import com.example.repository.FlightRepository;
@@ -13,6 +12,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.AbstractMap;
+import java.util.List;
+import java.util.Map;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -74,7 +80,30 @@ public class AirCompaniesManagementSystemApp {
 //		Company company = companyRepository.findById(1L).get();
 //		airplaneRepository.setCompany(3L, company);
 
-		airplaneRepository.setCompany(3L, 2L);
+		//airplaneRepository.setCompany(3L, 2L);
+
+		List<Map.Entry<String, Integer>> list = companyRepository
+				.findCompanyFlightsByStatus("Company1"
+				//,FlightStatus.PENDING
+		);
+
+
+
+		String n = list.get(0).getKey();
+		int s = list.get(0).getValue();
+
+		List<Flight> flightList = flightRepository.findAllActiveStartedMoreThan24HoursAgo(FlightStatus.COMPLETED);
+
+
+
+		Airplane airplane = Airplane.builder()
+	                    .name("Super airplane")
+	                    .planeCreated(
+			                    //LocalDate.parse("2007-05-02")
+			                    LocalDate.parse("2007-05-02")
+	                    )
+						.build();
+		airplaneRepository.save(airplane);
 
 		int a = 1;
 	}
