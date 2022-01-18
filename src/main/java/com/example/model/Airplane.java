@@ -18,7 +18,8 @@ import java.time.LocalDate;
 //@ToString(of = "name")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Airplane extends BaseEntity {
-	int serial;
+	@Basic(optional = false)
+	Integer serial;
 
 	//@OneToMany(mappedBy = "beach", fetch = FetchType.EAGER)
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -28,7 +29,8 @@ public class Airplane extends BaseEntity {
 
 	int flightDistance;
 
-	int fuelCapacity;
+	@Basic(optional = false)
+	Integer fuelCapacity;
 
 	int type;
 

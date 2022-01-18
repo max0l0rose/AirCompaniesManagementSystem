@@ -1,5 +1,6 @@
 package com.example.repository;
 
+import com.example.model.Airplane;
 import com.example.model.Flight;
 import com.example.model.FlightStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +10,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface FlightRepository extends JpaRepository<Flight, Long> {
+
+	Flight findByName(String name);
 
 	@Query(value = "SELECT * \n" +
 	               "FROM flight f \n" +

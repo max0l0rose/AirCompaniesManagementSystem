@@ -1,9 +1,9 @@
 package com.example;
 
 import com.example.model.*;
-import com.example.repository.AirplaneRepository;
-import com.example.repository.CompanyRepository;
-import com.example.repository.FlightRepository;
+import com.example.service.AirplaneService;
+import com.example.service.CompanyService;
+import com.example.service.FlightService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -13,12 +13,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.AbstractMap;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
+
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -26,9 +24,9 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AirCompaniesManagementSystemApp {
 
-	final AirplaneRepository airplaneRepository;
-	final CompanyRepository companyRepository;
-	final FlightRepository flightRepository;
+	final AirplaneService airplaneService;
+	final CompanyService companyService;
+	final FlightService flightService;
 
 	//	Flight flight = new Flight();
 //
@@ -82,28 +80,29 @@ public class AirCompaniesManagementSystemApp {
 
 		//airplaneRepository.setCompany(3L, 2L);
 
-		List<Map.Entry<String, Integer>> list = companyRepository
+		List<Map.Entry<String, BigInteger>> list = companyService
 				.findCompanyFlightsByStatus("Company1"
-				//,FlightStatus.PENDING
+				,FlightStatus.PENDING
 		);
 
 
 
 		String n = list.get(0).getKey();
-		int s = list.get(0).getValue();
+		BigInteger s = list.get(0).getValue();
 
-		List<Flight> flightList = flightRepository.findAllActiveStartedMoreThan24HoursAgo(FlightStatus.COMPLETED);
+		List<Flight> flightList = flightService.findAllActiveStartedMoreThan24HoursAgo(FlightStatus.COMPLETED);
 
 
 
-		Airplane airplane = Airplane.builder()
-	                    .name("Super airplane")
-	                    .planeCreated(
-			                    //LocalDate.parse("2007-05-02")
-			                    LocalDate.parse("2007-05-02")
-	                    )
-						.build();
-		airplaneRepository.save(airplane);
+//		Airplane airplane = Airplane.builder()
+//	                    .name("Super airplane3")
+//	                    .planeCreated(
+//			                    //LocalDate.parse("2007-05-02")
+//			                    LocalDate.parse("2007-05-02")
+//	                    )
+//					.fuelCapacity(1200)
+//						.build();
+//		airplaneService.save(airplane);
 
 		int a = 1;
 	}

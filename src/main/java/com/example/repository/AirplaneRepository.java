@@ -8,10 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface AirplaneRepository extends JpaRepository<Airplane, Long> {
-	@Transactional
-	@Modifying
-	@Query("update Airplane a set a.company = ?2 where a.id=?1")
-	int setCompany(long airplaneId, Company company);
+
+	Airplane findByName(String name);
+
+//	@Transactional
+//	@Modifying
+//	@Query("update Airplane a set a.company = ?2 where a.id=?1")
+//	int setCompany(long airplaneId, Company company);
 
 	@Transactional
 	@Modifying
