@@ -28,9 +28,10 @@ public class BaseEntity {
 
     @Column(nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Basic(optional = false)
     String name;
 
     @Column(columnDefinition="TIMESTAMP(0)")
@@ -51,6 +52,18 @@ public class BaseEntity {
     @Version
     int version;
 
+    public int updateFrom(BaseEntity o) {
+        int updates = 0;
+        if (o.getCreated() != null) {
+            this.setCreated(o.getCreated());
+            updates++;
+        }
+        if (o.getName() != null) {
+            this.setName(o.getName());
+            updates++;
+        }
+        return updates;
+    }
 
 //    @Enumerated(EnumType.ORDINAL)
 //    @Column(name = "status")

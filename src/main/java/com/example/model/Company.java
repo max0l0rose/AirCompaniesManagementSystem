@@ -1,23 +1,30 @@
 package com.example.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Data
 @SuperBuilder
+//@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Company extends BaseEntity {
-	int type;
+public class Company extends //RepresentationModel<Company>
+						BaseEntity
+{
+//	@Column(nullable = false)
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	Long id;
+//
+//	String name;
+
+	Integer type;
 
 	// the founded date doesn't belong to some timezone ) I think
 	LocalDate founded;
@@ -28,4 +35,20 @@ public class Company extends BaseEntity {
 				       "name=" + getName()
 				        + '}';
 	}
+
+	//@Override
+	public int updateFrom(Company o) {
+		int updates = super.updateFrom(o);
+
+		if (o.getType() != null) {
+			this.setType(o.getType());
+			updates++;
+		}
+		if (o.getFounded() != null) {
+			this.setFounded(o.getFounded());
+			updates++;
+		}
+		return updates;
+	}
+
 }

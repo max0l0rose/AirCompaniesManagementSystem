@@ -80,17 +80,17 @@ public class AirCompaniesManagementSystemApp {
 
 		//airplaneRepository.setCompany(3L, 2L);
 
-		List<Map.Entry<String, BigInteger>> list = companyService
-				.findCompanyFlightsByStatus("Company1"
-				,FlightStatus.PENDING
-		);
-
-
-
-		String n = list.get(0).getKey();
-		BigInteger s = list.get(0).getValue();
-
-		List<Flight> flightList = flightService.findAllActiveStartedMoreThan24HoursAgo(FlightStatus.COMPLETED);
+//		List<Map.Entry<String, BigInteger>> list = companyService
+//				.findCompanyFlightsByStatus("Company1"
+//				,FlightStatus.PENDING
+//		);
+//
+//
+//
+//		String n = list.get(0).getKey();
+//		BigInteger s = list.get(0).getValue();
+//
+//		List<Flight> flightList = flightService.findAllActiveStartedMoreThan24HoursAgo(FlightStatus.COMPLETED);
 
 
 

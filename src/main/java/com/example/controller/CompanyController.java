@@ -6,21 +6,35 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.StaleObjectStateException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mapping.PropertyReferenceException;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.websocket.server.PathParam;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
-@RequestMapping("/api/v1/public/company")
+@RequestMapping("/company")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Slf4j
@@ -28,136 +42,103 @@ public class CompanyController {
 	final CompanyService companyService;
 
 
-//	// ============================================================================================
-//	@PatchMapping(value = "/{id}")
-//	ResponseEntity<Company> userPatch(
-//			@PathVariable @Valid UUID id,
-////			@RequestParam(required = false) String firstName,
-////			@RequestParam(required = false) String lastName,
-////			@RequestParam(required = false) String role,
-////			@RequestParam Map<String, String> reqParam
-//			@RequestBody @Valid UserInfoPutDTO userInfoPutDTO
+//	@GetMapping("/findById/{id}")
+//	ResponseEntity<Company> getById(
+//			@PathVariable long id
 //	) {
 //		try {
-//			Company systemUser = companyService.findById(id).get();
-//			int pc = 0;
-//			if (userInfoPutDTO.getFirstName()!=null) {
-//				systemUser.setFirstName(userInfoPutDTO.getFirstName());
-//				pc++;
-//			}
-//			if (userInfoPutDTO.getLastName()!=null) {
-//				systemUser.setLastName(userInfoPutDTO.getLastName());
-//				pc++;
-//			}
-//
-//			if (userInfoPutDTO.getRole()!=null) {
-//				try {
-//					RoleEnum roleEnum = RoleEnum.valueOf(userInfoPutDTO.getRole());
-//					systemUser.setRole(roleEnum);
-//					pc++;
-//				} catch (IllegalArgumentException | NullPointerException ex) {
-//					//e.printStackTrace();
-//				}
-//			}
-//
-//			if (pc == 0 //|| pc != reqParam.size()
-//				)
-//				throw new IllegalArgumentException();
-//
-//			companyService.save(systemUser);
-//			return ResponseEntity.ok(systemUser);
-//		} catch (IllegalArgumentException | PropertyReferenceException ex) {
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Company());
+//			Company company = companyService.findById(id).get();
+//			return ResponseEntity.ok(company);
+//		} catch (NoSuchElementException e) {
 //		}
-//		catch (NoSuchElementException ex) {
-//			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Company());
-//		}
+//		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Company());
 //	}
 //
 //
-//	// ============================================================================================
-//	@PutMapping(value = "/{id}"
-//			//, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
-//	)
-//	ResponseEntity<Company> userPut(
-//			@PathVariable @Valid UUID id,
-//			//@RequestParam String firstName,
-////			@RequestParam(defaultValue = "") String lastName,
-////			@RequestParam String role
-//			@RequestBody @Valid UserInfoPutDTO userInfoPutDTO
-//			//@RequestParam Map<String, String> reqParam
+//	@GetMapping("/findByName")
+//	ResponseEntity<Company> getByName(
+//			@RequestParam String name
 //	) {
 //		try {
-//			Company systemUser = companyService.findById(id).get();
-//			if (userInfoPutDTO.getFirstName() == null)
-//				throw new IllegalArgumentException();
-//			systemUser.setFirstName(userInfoPutDTO.getFirstName());
-//			if (userInfoPutDTO.getLastName() == null)
-//				systemUser.setLastName(userInfoPutDTO.getLastName());
-//			RoleEnum roleEnum = RoleEnum.valueOf(userInfoPutDTO.getRole());
-//			systemUser.setRole(roleEnum);
-//			companyService.save(systemUser);
-//			return ResponseEntity.ok(systemUser);
-//		} catch (IllegalArgumentException | PropertyReferenceException | NullPointerException ex) {
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Company());
+//			Company company = companyService.findByName(name).get();
+//			return ResponseEntity.ok(company);
+//		} catch (NoSuchElementException e) {
 //		}
-//		catch (NoSuchElementException ex) {
-//			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Company());
-//		}
+//		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Company());
 //	}
 
 
-	// ============================================================================================
-	@GetMapping()
-	ResponseEntity<List<Company>> companies(
-			@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size,
-			@RequestParam(defaultValue = "id,asc") String sort
-	) {
+
+	@PostMapping()
+	ResponseEntity<Company> create(@RequestBody Company company) {
 		try {
-			int c = sort.indexOf(',');
-			String field = sort.substring(0, c).trim();
-			String dir = sort.substring(c + 1).trim();
-
-			Pageable pageable =	PageRequest.of(page, size,
-					"desc".equals(dir) ? Sort.by(field).descending() : Sort.by(field).ascending());
-			Page<Company> pageCompany = companyService.getPage(pageable);
-
-			List<Company> list = pageCompany.getContent();
-			return ResponseEntity.ok(list);
+			//Company company = Company.builder().name(name).build();
+			company = companyService.save(company);
+			return ResponseEntity.ok(company);
+		} catch (DataIntegrityViolationException e) {
+			e.printStackTrace();
 		}
-		catch (IllegalArgumentException | NoSuchElementException
-				       | PropertyReferenceException | StringIndexOutOfBoundsException ex) {
-			return ResponseEntity.badRequest().body(Collections.emptyList());
-		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Company());
 	}
 
 
-
-	// ============================================================================================
-	@GetMapping(value = "/{id}")
-	ResponseEntity<Company> company(
-			@PathVariable long id
-	) {
+	@PatchMapping(value = "/{id}"
+			//, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
+			//, consumes = {MediaType.APPLICATION_JSON_VALUE}
+			)
+	ResponseEntity<Company> patch(@RequestBody Company company, @PathVariable long id) {
+		//Company company = Company.builder().id(id).name(name).build();
 		try {
-			Company systemUser = companyService.findById(id).get();
-			return ResponseEntity.ok(systemUser);
-		} catch (NoSuchElementException ex) {
+			if (id>0)
+				company.setId(id);
+			company = companyService.update(company);
+			return ResponseEntity.ok(company);
+		} catch (DataIntegrityViolationException | StaleObjectStateException | NoSuchElementException e) {
+			e.printStackTrace();
 		}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Company());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Company());
 	}
 
 
+	@DeleteMapping(value = "/delete"
+			//, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
+			//, consumes = {MediaType.APPLICATION_JSON_VALUE}
+	)
+	ResponseEntity<Company> delete(long id) {
+		try {
+			companyService.delete(id);
+			return ResponseEntity.ok(null);
+		} catch (DataIntegrityViolationException | NoSuchElementException e) {
+			e.printStackTrace();
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+	}
 
-//	// ============================================================================================
-//	@RequestMapping(value = "/hello-world", method = {RequestMethod.PUT, RequestMethod.GET//, RequestMethod.OPTIONS
-//	})
-//	@CrossOrigin(origins = {"http://domain21.com"}//, methods = {RequestMethod.DELETE, RequestMethod.POST}
-//	)
-//	ResponseEntity<HelloObject> hello() {
-//		HelloObject helloObject = new HelloObject(1L, "Hello world...");
-//		return ResponseEntity.ok(helloObject);
+
+	// HATEOAS
+
+//	@GetMapping()
+//	public EntityModel<Company> qqqq() {
+//
+//		Company co = Company.builder().name("nnnn").build();
+//		co.add(linkTo(methodOn(CompanyController.class).qqqq()).withSelfRel());
+//
+//		return EntityModel.of(co,
+//				linkTo(methodOn(CompanyController.class).qqqq()).withSelfRel()
+//		);
 //	}
+
+
+//	@RequestMapping("/greeting")
+//	public HttpEntity<Company> greeting(
+//			@RequestParam(value = "name") String name) {
+//
+//		Company greeting = Company.builder().name(name).build();
+//		greeting.add(linkTo(methodOn(CompanyController.class).greeting(name)).withSelfRel());
+//
+//		return new ResponseEntity<>(greeting, HttpStatus.OK);
+//	}
+
 
 }
 

@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.model.Company;
 import com.example.model.Flight;
 import com.example.model.FlightStatus;
 import com.example.repository.FlightRepository;
@@ -64,6 +65,12 @@ public class FlightService
 		return flightRepository.save(flight);
 	}
 
+
+	public Flight update(Flight flight) {
+		Flight flightOld = findById(flight.getId()).get();
+		flightOld.updateFrom(flight);
+		return flightRepository.save(flightOld);
+	}
 
 	public void delete(long id) {
 		flightRepository.deleteById(id);

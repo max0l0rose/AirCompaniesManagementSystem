@@ -43,7 +43,7 @@ public class Flight extends BaseEntity {
 	@Column(nullable = false)
 	String destCountry = "FRA";
 
-	int distance = 0;
+	Integer distance = 0;
 
 	@Column(nullable = false)
 	LocalTime estimatedFlightTime = LocalTime.of(5, 0);
@@ -57,6 +57,55 @@ public class Flight extends BaseEntity {
 
 	@Column(columnDefinition="DATETIME(0)")
 	OffsetDateTime delayStartedDateTime;
+
+
+	//@Override
+	public int updateFrom(Flight o) {
+		int updates = super.updateFrom(o);
+
+		if (o.getStatus() != null) {
+			this.setStatus(o.getStatus());
+			updates++;
+		}
+		if (o.getCompany() != null) {
+			this.setCompany(o.getCompany());
+			updates++;
+		}
+		if (o.getAirplane() != null) {
+			this.setAirplane(o.getAirplane());
+			updates++;
+		}
+		if (o.getDepartCountry() != null) {
+			this.setDepartCountry(o.getDepartCountry());
+			updates++;
+		}
+		if (o.getDestCountry() != null) {
+			this.setDestCountry(o.getDestCountry());
+			updates++;
+		}
+		if (o.getDistance() != null) {
+			this.setDistance(o.getDistance());
+			updates++;
+		}
+		if (o.getEstimatedFlightTime() != null) {
+			this.setEstimatedFlightTime(o.getEstimatedFlightTime());
+			updates++;
+		}
+		if (o.getStartedDateTime() != null) {
+			this.setStartedDateTime(o.getStartedDateTime());
+			updates++;
+		}
+		if (o.getEndedDateTime() != null) {
+			this.setEndedDateTime(o.getEndedDateTime());
+			updates++;
+		}
+		if (o.getDelayStartedDateTime() != null) {
+			this.setDelayStartedDateTime(o.getDelayStartedDateTime());
+			updates++;
+		}
+		return updates;
+	}
+
 }
 
 
