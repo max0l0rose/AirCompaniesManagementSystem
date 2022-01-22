@@ -1,9 +1,6 @@
 package com.example.repository;
 
-import com.example.model.Airplane;
-import com.example.model.Company;
-import com.example.model.FlightStatus;
-import com.example.model.ITestDTO;
+import com.example.model.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,18 +17,18 @@ import java.util.Map;
 import java.util.Optional;
 
 //@Repository
-@RepositoryRestResource()
+//@RepositoryRestResource()
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
 	//@Lock(LockModeType.READ);
 	Company findByName(String name);
 
-	@Transactional
-	@Modifying
-	@Query(value = "INSERT INTO Company (name, type) " +
-			               "VALUES (:name , 1)", //:#{#flightStatus.ordinal()}
-			nativeQuery = true)
-	int save1(String name);
+//	@Transactional
+//	@Modifying
+//	@Query(value = "INSERT INTO Company (name, type) " +
+//			               "VALUES (:name , 1)", //:#{#flightStatus.ordinal()}
+//			nativeQuery = true)
+//	int save1(String name);
 
 //	@Transactional
 //	@Modifying
@@ -43,27 +40,27 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
 
 	//3
-	//@Transactional
-	//@Modifying
-	@Query(value = "SELECT f.name as 'key', f.id as value \n" +
-			               "FROM flight f \n" +
-			               "LEFT JOIN company c on c.id = f.company_id \n" +
-			               "WHERE c.name = :companyName \n" +
-			               "AND f.status = :flightStatus", //:#{#flightStatus.ordinal()}
-			nativeQuery = true)
-	List<Map.Entry<String, BigInteger>> findCompanyFlightsByStatus(String companyName
-	                                       , int flightStatus // @Param("flightStatus")
-	);
-
-
-
-	//	//@Transactional
+//	//@Transactional
 //	//@Modifying
-//	@Query(value = "SELECT new com.example.model.TestDTO(c.name, f.status) \n" +
+//	@Query(value = "SELECT f.* \n" +
 //			               "FROM flight f \n" +
 //			               "LEFT JOIN company c on c.id = f.company_id \n" +
-//			               "WHERE c.name = :companyName")
-//	List<TestDTO> findCompanyFlightsByStatus(String companyName
-//	                                         //, @Param("flightStatus") FlightStatus flightStatus
+//			               "WHERE c.name = :companyName \n" +
+//			               "AND f.status = :flightStatus", //:#{#flightStatus.ordinal()}
+//			nativeQuery = true)
+//	List<Flight> findCompanyFlightsByStatus(String companyName
+//	                                       , int flightStatus // @Param("flightStatus")
 //	);
+
+
+
+		//@Transactional
+	//@Modifying
+	@Query(value = "SELECT f " +
+			               "FROM Flight f " +
+			               "LEFT JOIN f.company c " +
+			               "WHERE c.name = :companyName and f.status = :flightStatus")
+	List<Flight> findCompanyFlightsByStatus(String companyName
+	                                         , FlightStatus flightStatus
+	);
 }

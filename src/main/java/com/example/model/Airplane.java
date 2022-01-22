@@ -3,6 +3,8 @@ package com.example.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,6 +19,7 @@ import java.time.LocalDate;
 //@EqualsAndHashCode(of = "id")
 //@ToString(of = "name")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@DynamicUpdate
 public class Airplane extends BaseEntity {
 	@Basic(optional = false)
 	Integer serial;

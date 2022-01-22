@@ -3,6 +3,7 @@ package com.example.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@DynamicUpdate
 public class Company extends //RepresentationModel<Company>
 						BaseEntity
 {
@@ -24,6 +26,7 @@ public class Company extends //RepresentationModel<Company>
 //
 //	String name;
 
+	@Basic(optional = false)
 	Integer type;
 
 	// the founded date doesn't belong to some timezone ) I think

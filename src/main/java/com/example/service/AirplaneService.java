@@ -1,7 +1,7 @@
 package com.example.service;
 
 
-// It is not needed, coz Repository Query Methods works directly
+// It is not needed, coz Repository's Query Methods works perfectly
 
 
 //import com.example.model.Airplane;

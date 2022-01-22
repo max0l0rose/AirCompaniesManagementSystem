@@ -1,7 +1,7 @@
 package com.example;
 
 import com.example.model.Airplane;
-import com.example.service.AirplaneService;
+import com.example.repository.AirplaneRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,12 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class AirCompaniesManagementSystemApplicationTests {
 
 	@Autowired
-	AirplaneService airplaneService;
+	AirplaneRepository airplaneRepository;
 
 	@Test
 	//@Sql("classpath:test-data.sql")
 	void contextLoads() {
-		Airplane airplane = airplaneService.findById(1L).get();
+		Airplane airplane = airplaneRepository.findById(1L).get();
 		//assertNotNull(airplane);
 	}
 

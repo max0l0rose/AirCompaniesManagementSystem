@@ -17,6 +17,8 @@ class SpringRestConfiguration implements RepositoryRestConfigurer {
 }
 
 
+
+
 //	@Bean
 //	public RepositoryRestConfigurer repositoryRestConfigurer() {
 //
