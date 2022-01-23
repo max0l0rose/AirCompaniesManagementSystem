@@ -1,6 +1,6 @@
-package com.example.repository;
+package com.marshall.crazyairman.repository;
 
-import com.example.model.Airplane;
+import com.marshall.crazyairman.model.Airplane;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

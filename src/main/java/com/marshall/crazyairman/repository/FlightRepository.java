@@ -1,13 +1,9 @@
-package com.example.repository;
+package com.marshall.crazyairman.repository;
 
-import com.example.model.Airplane;
-import com.example.model.Flight;
-import com.example.model.FlightStatus;
+import com.marshall.crazyairman.model.Flight;
+import com.marshall.crazyairman.model.FlightStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RestResource;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

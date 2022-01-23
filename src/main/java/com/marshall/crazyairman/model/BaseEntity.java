@@ -1,20 +1,15 @@
-package com.example.model;
+package com.marshall.crazyairman.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.util.Date;
 
 @MappedSuperclass
 @Data
@@ -64,8 +59,4 @@ public class BaseEntity {
         }
         return updates;
     }
-
-//    @Enumerated(EnumType.ORDINAL)
-//    @Column(name = "status")
-//    private Status status;
 }

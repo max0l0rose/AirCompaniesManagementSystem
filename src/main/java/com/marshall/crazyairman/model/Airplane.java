@@ -1,14 +1,11 @@
-package com.example.model;
+package com.marshall.crazyairman.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.rest.core.annotation.RestResource;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.time.LocalDate;
 
 @Entity
@@ -24,8 +21,7 @@ public class Airplane extends BaseEntity {
 	@Basic(optional = false)
 	Integer serial;
 
-	//@OneToMany(mappedBy = "beach", fetch = FetchType.EAGER)
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	Company company;
 
 	int numberOfFlights;

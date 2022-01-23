@@ -1,20 +1,12 @@
-package com.example.repository;
+package com.marshall.crazyairman.repository;
 
-import com.example.model.*;
+import com.marshall.crazyairman.model.Company;
+import com.marshall.crazyairman.model.Flight;
+import com.marshall.crazyairman.model.FlightStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.EntityManager;
-import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 //@Repository
 //@RepositoryRestResource()

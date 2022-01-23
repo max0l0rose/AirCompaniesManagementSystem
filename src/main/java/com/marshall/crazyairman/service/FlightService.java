@@ -1,9 +1,8 @@
-package com.example.service;
+package com.marshall.crazyairman.service;
 
-import com.example.model.Company;
-import com.example.model.Flight;
-import com.example.model.FlightStatus;
-import com.example.repository.FlightRepository;
+import com.marshall.crazyairman.model.Flight;
+import com.marshall.crazyairman.model.FlightStatus;
+import com.marshall.crazyairman.repository.FlightRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

@@ -1,15 +1,10 @@
-package com.example;
+package com.marshall.crazyairman;
 
-import com.example.model.*;
-import com.example.service.FlightService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 
@@ -48,7 +43,7 @@ public class AirCompaniesManagementSystemApp {
 //	}
 
 
-//	// DB ready!
+//	// ---DB ready!
 //	@EventListener
 //	public void onApplicationEvent(ContextRefreshedEvent event) {
 //		//Flight flight = flightRepository.findById(4L).get();
@@ -98,7 +93,7 @@ public class AirCompaniesManagementSystemApp {
 }
 
 
-//// DB ready!
+//// ---DB ready!
 //@Component
 //class AppStartupRunner implements ApplicationRunner {
 //

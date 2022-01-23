@@ -1,16 +1,10 @@
-package com.example.model;
+package com.marshall.crazyairman.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.NaturalId;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -37,19 +31,17 @@ public class Flight extends //RepresentationModel<Flight>
 //
 //	String name;
 
-
-
 	//@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	FlightStatus status = FlightStatus.PENDING;
 
-	@ManyToOne
 	// I think a flight may be not assigned to a company - nullable
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	Company company;
 
 	// I think a flight may be not assigned to a plane
 	// nullable
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	Airplane airplane;
 
 	@Column(nullable = false)
@@ -76,7 +68,7 @@ public class Flight extends //RepresentationModel<Flight>
 
 	//@Override
 	public int updateFrom(Flight o) {
-		int updates = 0;//super.updateFrom(o);
+		int updates = super.updateFrom(o);
 
 		if (o.getStatus() != null) {
 			this.setStatus(o.getStatus());

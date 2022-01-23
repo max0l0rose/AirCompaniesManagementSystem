@@ -1,7 +1,7 @@
-package com.example;
+package com.marshall.crazyairman;
 
-import com.example.model.Airplane;
-import com.example.repository.AirplaneRepository;
+import com.marshall.crazyairman.model.Airplane;
+import com.marshall.crazyairman.repository.AirplaneRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

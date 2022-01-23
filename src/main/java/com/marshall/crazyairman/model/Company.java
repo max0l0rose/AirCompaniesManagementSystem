@@ -1,4 +1,4 @@
-package com.example.model;
+package com.marshall.crazyairman.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -39,19 +39,19 @@ public class Company extends //RepresentationModel<Company>
 				        + '}';
 	}
 
-	//@Override
-	public int updateFrom(Company o) {
-		int updates = super.updateFrom(o);
-
-		if (o.getType() != null) {
-			this.setType(o.getType());
-			updates++;
-		}
-		if (o.getFounded() != null) {
-			this.setFounded(o.getFounded());
-			updates++;
-		}
-		return updates;
-	}
+//	//@Override
+//	public int updateFrom(Company o) {
+//		int updates = super.updateFrom(o);
+//
+//		if (o.getType() != null) {
+//			this.setType(o.getType());
+//			updates++;
+//		}
+//		if (o.getFounded() != null) {
+//			this.setFounded(o.getFounded());
+//			updates++;
+//		}
+//		return updates;
+//	}
 
 }

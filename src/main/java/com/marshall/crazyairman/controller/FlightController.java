@@ -1,20 +1,14 @@
-package com.example.controller;
+package com.marshall.crazyairman.controller;
 
-import com.example.model.Flight;
-import com.example.model.FlightStatus;
-import com.example.service.FlightService;
+import com.marshall.crazyairman.model.Flight;
+import com.marshall.crazyairman.model.FlightStatus;
+import com.marshall.crazyairman.service.FlightService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.StaleObjectStateException;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.data.rest.core.annotation.RestResource;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.LinkRelation;
-import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.NoSuchElementException;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 
 @RestController
