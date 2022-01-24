@@ -7,18 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-//@Repository
 public interface FlightRepository extends JpaRepository<Flight, Long> {
 
 	Flight findByName(String name);
-
-//	@Query(value = "SELECT * \n" +
-//			               "FROM flight f \n" +
-//						   "LIMIT 1"
-//			,nativeQuery = true)
-//	//@RestResource(exported = true)
-//	Object[] qqqq();
-
 
 	@Query(value = "SELECT * \n" +
 	               "FROM flight f \n" +
@@ -27,5 +18,4 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
 	               "and f.started_date_time < DATE_SUB(NOW(), INTERVAL 1 DAY)",
 			nativeQuery = true)
 	List<Flight> findAllActiveStartedMoreThan24HoursAgo(FlightStatus flightStatus);
-
 }

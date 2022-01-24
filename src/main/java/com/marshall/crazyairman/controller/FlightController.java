@@ -15,35 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-
 
 @RestController
 @RequestMapping("/flight")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Slf4j
-//@RepositoryRestResource(path = "flight")
 public class FlightController {
 	final FlightService flightService;
-
-
-//	@GetMapping("/flights/search/qqq")
-//	ResponseEntity<RepresentationModel<Flight>> qqq(
-//			//@PathVariable long id
-//	) {
-//			//Flight flight = new Flight();
-//
-//		RepresentationModel<Flight> resources = new RepresentationModel<>();
-//		resources.add(linkTo(methodOn(FlightController.class).qqq()).withSelfRel());
-//
-////			flight.add(linkTo(methodOn(FlightController.class).setStatus(flight, 999)).withRel(LinkRelation.of("qqqq")));
-//			return ResponseEntity.ok(resources);
-////		try {
-////		} catch (NoSuchElementException e) {
-////		}
-////		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Flight());
-//	}
 
 
 	// 7

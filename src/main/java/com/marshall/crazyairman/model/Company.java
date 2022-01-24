@@ -11,21 +11,12 @@ import java.time.LocalDate;
 @Entity
 @Data
 @SuperBuilder
-//@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @DynamicUpdate
-public class Company extends //RepresentationModel<Company>
-						BaseEntity
+public class Company extends BaseEntity
 {
-//	@Column(nullable = false)
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	Long id;
-//
-//	String name;
-
 	@Basic(optional = false)
 	Integer type;
 
@@ -38,20 +29,5 @@ public class Company extends //RepresentationModel<Company>
 				       "name=" + getName()
 				        + '}';
 	}
-
-//	//@Override
-//	public int updateFrom(Company o) {
-//		int updates = super.updateFrom(o);
-//
-//		if (o.getType() != null) {
-//			this.setType(o.getType());
-//			updates++;
-//		}
-//		if (o.getFounded() != null) {
-//			this.setFounded(o.getFounded());
-//			updates++;
-//		}
-//		return updates;
-//	}
 
 }

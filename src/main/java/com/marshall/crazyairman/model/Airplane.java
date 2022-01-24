@@ -13,8 +13,6 @@ import java.time.LocalDate;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-//@EqualsAndHashCode(of = "id")
-//@ToString(of = "name")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @DynamicUpdate
 public class Airplane extends BaseEntity {
@@ -33,6 +31,5 @@ public class Airplane extends BaseEntity {
 
 	int type;
 
-	//@DateTimeFormat(pattern = "yyyy-MM-dd")
 	LocalDate planeCreated;
 }

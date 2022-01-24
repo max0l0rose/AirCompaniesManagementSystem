@@ -31,15 +31,9 @@ public class BaseEntity {
 
     @Column(columnDefinition="TIMESTAMP(0)")
 	@CreatedDate
-//	@Column(columnDefinition = "TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP",
-//			updatable = false, insertable = false)
-//	@Temporal(TemporalType.TIMESTAMP)
-    //@CreationTimestamp // hibernate
     Instant created;
 
     @LastModifiedDate
-    //@UpdateTimestamp
-    //@Column(name = "updated")
     @Column(columnDefinition="TIMESTAMP(0)")
     Instant updated;
 

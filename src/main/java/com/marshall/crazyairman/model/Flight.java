@@ -12,26 +12,13 @@ import java.time.OffsetDateTime;
 
 @Entity
 @Data
-//@Builder
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @DynamicUpdate
-//@JsonIgnoreProperties(ignoreUnknown = false)
-public class Flight extends //RepresentationModel<Flight>
-					 BaseEntity
+public class Flight extends BaseEntity
 {
-//	@Column(nullable = false)
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	//@JsonIgnore
-//	//@JsonProperty("id")
-//	Long id;
-//
-//	String name;
-
-	//@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	FlightStatus status = FlightStatus.PENDING;
 
@@ -40,7 +27,6 @@ public class Flight extends //RepresentationModel<Flight>
 	Company company;
 
 	// I think a flight may be not assigned to a plane
-	// nullable
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	Airplane airplane;
 
@@ -66,7 +52,6 @@ public class Flight extends //RepresentationModel<Flight>
 	OffsetDateTime delayStartedDateTime;
 
 
-	//@Override
 	public int updateFrom(Flight o) {
 		int updates = super.updateFrom(o);
 
