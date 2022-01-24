@@ -19,7 +19,7 @@ public class Airplane extends BaseEntity {
 	@Basic(optional = false)
 	Integer serial;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL) //, fetch = FetchType.LAZY
 	Company company;
 
 	int numberOfFlights;
