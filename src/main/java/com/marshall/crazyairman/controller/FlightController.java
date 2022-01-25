@@ -6,7 +6,6 @@ import com.marshall.crazyairman.service.FlightService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
 import org.hibernate.StaleObjectStateException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
