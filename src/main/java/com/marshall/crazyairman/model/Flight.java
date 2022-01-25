@@ -23,11 +23,11 @@ public class Flight extends BaseEntity
 	FlightStatus status = FlightStatus.PENDING;
 
 	// I think a flight may be not assigned to a company - nullable
-	@ManyToOne(cascade = CascadeType.ALL) //, fetch = FetchType.LAZY
+	@ManyToOne(cascade = CascadeType.ALL)
 	Company company;
 
 	// I think a flight may be not assigned to a plane
-	@ManyToOne(cascade = CascadeType.ALL) //, fetch = FetchType.LAZY
+	@ManyToOne(cascade = CascadeType.ALL)
 	Airplane airplane;
 
 	@Column(nullable = false)

@@ -1,5 +1,9 @@
 package com.marshall.crazyairman.model;
 
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.impl.ObjectIdWriter;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
@@ -24,6 +28,7 @@ public class BaseEntity {
     @Column(nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty
     Long id;
 
     @Basic(optional = false)

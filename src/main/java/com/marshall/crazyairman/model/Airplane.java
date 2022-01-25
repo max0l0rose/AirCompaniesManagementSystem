@@ -15,11 +15,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @DynamicUpdate
-public class Airplane extends BaseEntity {
+public class Airplane extends BaseEntity
+{
 	@Basic(optional = false)
 	Integer serial;
 
-	@ManyToOne(cascade = CascadeType.ALL) //, fetch = FetchType.LAZY
+	@ManyToOne(cascade = CascadeType.ALL)
 	Company company;
 
 	int numberOfFlights;
