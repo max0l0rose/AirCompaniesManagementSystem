@@ -3,7 +3,6 @@ package com.marshall.crazyairman.repository;
 import com.marshall.crazyairman.model.Company;
 import com.marshall.crazyairman.model.Flight;
 import com.marshall.crazyairman.model.FlightStatus;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,7 +12,6 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
 	Company findByName(String name);
 
-	@EntityGraph(value = "graph-plane-company")
 	Company findById(long id);
 
 	// task 3

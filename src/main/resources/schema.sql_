@@ -1,3 +1,0 @@
-drop database airman;
-create database airman;
-use airman;

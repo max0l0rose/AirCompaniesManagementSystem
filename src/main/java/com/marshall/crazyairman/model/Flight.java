@@ -42,13 +42,16 @@ public class Flight extends BaseEntity
 	LocalTime estimatedFlightTime = LocalTime.of(5, 0);
 
 	@DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
-	@Column(columnDefinition="DATETIME(0)")
+//	@Column(columnDefinition="DATETIME(0)") // MySQL
+	@Column(columnDefinition="timestamp with time zone")
 	OffsetDateTime startedDateTime;
 
-	@Column(columnDefinition="DATETIME(0)")
+//	@Column(columnDefinition="DATETIME(0)")
+	@Column(columnDefinition="timestamp with time zone")
 	OffsetDateTime endedDateTime;
 
-	@Column(columnDefinition="DATETIME(0)")
+//	@Column(columnDefinition="DATETIME(0)")
+	@Column(columnDefinition="timestamp with time zone")
 	OffsetDateTime delayStartedDateTime;
 
 

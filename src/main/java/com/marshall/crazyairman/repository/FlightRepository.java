@@ -2,19 +2,17 @@ package com.marshall.crazyairman.repository;
 
 import com.marshall.crazyairman.model.Flight;
 import com.marshall.crazyairman.model.FlightStatus;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface FlightRepository extends JpaRepository<Flight, Long> {
+public interface FlightRepository extends JpaRepository<Flight, Long>, FlightRepoExt
+{
 
-	@EntityGraph(value = "graph-flight-company-airplane")
 	Optional<Flight> findById(long id);
 
-	@EntityGraph(value = "graph-flight-company-airplane")
 	Flight findByName(String name);
 
 	@Query(value = "SELECT * \n" +

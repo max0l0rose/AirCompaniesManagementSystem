@@ -6,13 +6,16 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import javax.persistence.EntityManager;
@@ -34,6 +37,7 @@ import java.util.stream.Collectors;
 //}
 
 
+// add Id field in response
 @Configuration
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -51,6 +55,22 @@ class SpringRestConfiguration implements RepositoryRestConfigurer {
 		config.exposeIdsFor(cl);
 	}
 }
+
+
+//class qqq implements CommandLineRunner {
+//
+//	@Autowired
+//	JdbcTemplate jdbcTemplate;
+//
+//	@Override
+//	public void run(String... args) throws Exception {
+//		//try {
+//			jdbcTemplate.update("CREATE DATABASE airman");
+//		//} catch (DataAccessException e) {
+//			//e.printStackTrace();
+//		//}
+//	}
+//}
 
 
 //@Configuration
